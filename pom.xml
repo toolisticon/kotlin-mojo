@@ -14,6 +14,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <kotlin.version>1.6.10</kotlin.version>
     <java.version>11</java.version>
+    <kotlin-logging.version>2.1.21</kotlin-logging.version>
 
     <maven.version>3.8.4</maven.version>
 
@@ -21,8 +22,6 @@
     <maven-plugin-api.version>${maven.version}</maven-plugin-api.version>
     <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
     <mojo-executor.version>2.4.0</mojo-executor.version>
-
-    <kotlin-logging.version>2.1.21</kotlin-logging.version>
 
     <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>
@@ -63,6 +62,20 @@
       <groupId>io.github.microutils</groupId>
       <artifactId>kotlin-logging-jvm</artifactId>
       <version>${kotlin-logging.version}</version>
+    </dependency>
+
+    <!-- MAVEN -->
+    <!-- all maven dependencies have to be in provided scope because they will be part -->
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven-plugin-api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.twdata.maven</groupId>
+      <artifactId>mojo-executor</artifactId>
+      <version>${mojo-executor.version}</version>
     </dependency>
 
     <!-- TEST -->

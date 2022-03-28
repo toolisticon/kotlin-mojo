@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-set>
+  <components>
+    <component>
+      <role>org.codehaus.plexus.component.configurator.ComponentConfigurator</role>
+      <role-hint>runtime-scope-dependencies-configurator</role-hint>
+      <implementation>io.toolisticon.maven.mojo.RuntimeScopeDependenciesConfigurator</implementation>
+    </component>
+  </components>
+</component-set>
