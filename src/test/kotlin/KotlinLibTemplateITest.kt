@@ -1,4 +1,4 @@
-package BASE_GROUP_ID
+package io.toolisticon.maven
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

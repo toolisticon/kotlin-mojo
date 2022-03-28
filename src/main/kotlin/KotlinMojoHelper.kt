@@ -1,6 +1,6 @@
-package BASE_GROUP_ID
+package io.toolisticon.maven
 
-object KotlinLibTemplate {
+object KotlinMojoHelper {
 
   // just a placeholder
 

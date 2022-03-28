@@ -2,20 +2,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>BASE_GROUP_ID</groupId>
-  <artifactId>BASE_ARTIFACT_ID</artifactId>
+  <groupId>io.toolisticon.maven</groupId>
+  <artifactId>kotlin-mojo-helper</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
   <name>${project.artifactId}</name>
-  <description>BASE_DESCRIPTION</description>
-  <url>https://github.com/GITHUB_ORGANIZATION/GITHUB_REPOSITORY/</url>
+  <description>Helper for writing maven plugin mojos with kotlin</description>
+  <url>https://github.com/toolisticon/kotlin-mojo-helper/</url>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <kotlin.version>1.6.10</kotlin.version>
     <java.version>11</java.version>
 
-    <!-- TEST -->
+    <maven.version>3.8.4</maven.version>
+
+    <!-- MAVEN -->
+    <maven-plugin-api.version>${maven.version}</maven-plugin-api.version>
+    <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
+    <mojo-executor.version>2.4.0</mojo-executor.version>
+
     <kotlin-logging.version>2.1.21</kotlin-logging.version>
+
+    <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>
     <mockito.version>4.0.0</mockito.version>
     <assertj.version>3.22.0</assertj.version>
@@ -595,9 +604,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git@github.com:GITHUB_ORGANIZATION/GITHUB_REPOSITORY.git</connection>
-    <url>scm:git:git@github.com:GITHUB_ORGANIZATION/GITHUB_REPOSITORY.git</url>
-    <developerConnection>scm:git:git@github.com:GITHUB_ORGANIZATION/GITHUB_REPOSITORY.git</developerConnection>
+    <connection>scm:git:git@github.com:toolisticon/kotlin-mojo-helper.git</connection>
+    <url>scm:git:git@github.com:toolisticon/kotlin-mojo-helper.git</url>
+    <developerConnection>scm:git:git@github.com:toolisticon/kotlin-mojo-helper.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
@@ -619,17 +628,6 @@
       <roles>
         <role>Product Owner</role>
         <role>Developer</role>
-      </roles>
-      <organization>Holisticon AG</organization>
-      <organizationUrl>https://holisticon.de</organizationUrl>
-    </developer>
-    <developer>
-      <id>zambrovski</id>
-      <name>Simon Zambrovski</name>
-      <roles>
-        <role>Product Owner</role>
-        <role>Developer</role>
-        <role>Toolsmith</role>
       </roles>
       <organization>Holisticon AG</organization>
       <organizationUrl>https://holisticon.de</organizationUrl>
