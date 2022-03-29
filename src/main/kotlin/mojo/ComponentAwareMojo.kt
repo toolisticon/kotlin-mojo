@@ -70,6 +70,9 @@ abstract class ComponentAwareMojo : AbstractMojo() {
   @Component
   private lateinit var buildPluginManager: BuildPluginManager
 
+  /**
+   * Wrapped components, available to all implementing mojos.
+   */
   val components by lazy {
     MojoComponents(
       logger = logger,

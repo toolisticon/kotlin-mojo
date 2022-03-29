@@ -8,6 +8,9 @@ import org.apache.maven.plugin.Mojo
 import org.apache.maven.plugin.logging.Log
 import org.apache.maven.plugin.logging.SystemStreamLog
 
+/**
+ * Root class providing simplified access to most common use cases.
+ */
 object KotlinMojoHelper {
 
   /**
