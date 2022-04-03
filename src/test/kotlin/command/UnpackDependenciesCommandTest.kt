@@ -16,9 +16,14 @@ internal class UnpackDependenciesCommandTest {
     val parameter = MavenArtifactParameter(gav = "io.hello:world:1.0")
     val parameters = setOf(parameter)
 
-    val cmd = UnpackDependenciesCommand(outputDirectory = output, artifactItems = parameters.map { it.toArtifactItem() }.toSet())
+    val cmd = UnpackDependenciesCommand(
+      outputDirectory = output,
+      artifactItems = parameters.map { it.toArtifactItem() }.toSet(),
+      excludes = "META-INF/**"
+    )
 
-    Assertions.assertThat(cmd.configuration().toString()).isEqualTo("""
+    Assertions.assertThat(cmd.configuration().toString()).isEqualTo(
+      """
       <?xml version="1.0" encoding="UTF-8"?>
       <configuration>
         <outputDirectory>${output.path}</outputDirectory>
@@ -30,7 +35,9 @@ internal class UnpackDependenciesCommandTest {
             <overWrite>false</overWrite>
           </artifactItem>
         </artifactItems>
+        <excludes>META-INF/**</excludes>
       </configuration>
-    """.trimIndent())
+    """.trimIndent()
+    )
   }
 }

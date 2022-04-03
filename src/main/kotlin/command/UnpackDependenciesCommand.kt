@@ -34,6 +34,9 @@ data class UnpackDependenciesCommand(
         }
       }
     }
+    if (excludes != null) {
+      element("excludes", excludes)
+    }
   }
 
   override val goal: Goal = "unpack"

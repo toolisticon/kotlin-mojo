@@ -23,10 +23,6 @@
     <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
-    <!-- PLUGINS -->
-    <toolisticon-maven-tiles.version>0.0.1</toolisticon-maven-tiles.version>
-    <tiles-maven-plugin.version>2.27</tiles-maven-plugin.version>
-
     <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>
     <mockito.version>4.0.0</mockito.version>
