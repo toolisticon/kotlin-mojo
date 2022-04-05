@@ -23,6 +23,9 @@
     <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
+    <!-- PLUGIN -->
+    <maven-dokka-plugin.version>1.6.10</maven-dokka-plugin.version>
+
     <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>
     <mockito.version>4.0.0</mockito.version>
@@ -375,7 +378,7 @@
         <plugin>
           <groupId>org.jetbrains.dokka</groupId>
           <artifactId>dokka-maven-plugin</artifactId>
-          <version>1.6.20</version>
+          <version>${maven-dokka-plugin.version}</version>
           <executions>
             <execution>
               <phase>package</phase>
