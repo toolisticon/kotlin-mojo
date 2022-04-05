@@ -1,18 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.toolisticon.maven</groupId>
   <artifactId>kotlin-mojo-helper</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
   <name>${project.artifactId}</name>
-  <description>Helper for writing maven plugin mojos with kotlin</description>
+  <description>Helper for writing maven command mojos with kotlin</description>
   <url>https://github.com/toolisticon/kotlin-mojo-helper/</url>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <kotlin.version>1.6.10</kotlin.version>
+    <kotlin.version>1.6.20</kotlin.version>
     <java.version>11</java.version>
     <kotlin-logging.version>2.1.21</kotlin-logging.version>
 
@@ -23,10 +23,14 @@
     <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
+    <!-- PLUGIN -->
+    <maven-dokka-plugin.version>1.6.10</maven-dokka-plugin.version>
+
     <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>
     <mockito.version>4.0.0</mockito.version>
     <assertj.version>3.22.0</assertj.version>
+    <slf4j.version>1.7.36</slf4j.version>
   </properties>
 
   <dependencyManagement>
@@ -116,6 +120,24 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.soebes.itf.jupiter.extension</groupId>
+      <artifactId>itf-jupiter-extension</artifactId>
+      <version>0.11.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.soebes.itf.jupiter.extension</groupId>
+      <artifactId>itf-assertj</artifactId>
+      <version>0.11.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -236,8 +258,8 @@
           <configuration>
             <jvmTarget>${java.version}</jvmTarget>
             <compilerPlugins>
-              <!--<plugin>spring</plugin>-->
-              <!--plugin>jpa</plugin-->
+              <!--<command>spring</command>-->
+              <!--command>jpa</command-->
               <plugin>no-arg</plugin>
               <plugin>all-open</plugin>
             </compilerPlugins>
@@ -328,6 +350,10 @@
             </execution>
           </executions>
           <configuration>
+            <systemProperties>
+              <maven.version>${maven.version}</maven.version>
+              <maven.home>${maven.home}</maven.home>
+            </systemProperties>
             <argLine>--illegal-access=permit ${failsafeArgLine}</argLine>
             <includes>
               <include>**/*ITest.*</include>
@@ -352,7 +378,7 @@
         <plugin>
           <groupId>org.jetbrains.dokka</groupId>
           <artifactId>dokka-maven-plugin</artifactId>
-          <version>1.6.10</version>
+          <version>${maven-dokka-plugin.version}</version>
           <executions>
             <execution>
               <phase>package</phase>
@@ -561,10 +587,26 @@
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>com.soebes.itf.jupiter.extension</groupId>
+        <artifactId>itf-maven-plugin</artifactId>
+        <version>0.11.0</version>
+        <executions>
+          <execution>
+            <id>installing</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>install</goal>
+              <goal>resources-its</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
+    <!-- integration testing -->
     <profile>
       <id>itest</id>
       <build>

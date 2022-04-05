@@ -9,7 +9,7 @@ A library that makes writing powerful maven plugins even easier by providing kot
 
 ## How to use
 
-In your maven plugin project (maven packaging `maven-plugin`) include this library:
+In your maven command project (maven packaging `maven-command`) include this library:
 
 ```xml
 <dependency>
