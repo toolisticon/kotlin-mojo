@@ -12,7 +12,7 @@ internal class BuildHelperMavenPluginTest {
   private lateinit var tmpFile: File
 
   @Test
-  internal fun `create command`() {
+  fun `create command`() {
     val resource = ResourceData(directory = tmpFile, targetPath = "/")
 
     val command = AddResourceDirectoryCommand(resource)

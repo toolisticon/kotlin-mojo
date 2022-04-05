@@ -43,7 +43,7 @@ internal class MavenArtifactTest {
 
 
   @Test
-  internal fun `create parameter with groupId, artifactId and version`() {
+  fun `create parameter with groupId, artifactId and version`() {
     val param = MavenArtifactParameter(groupId = "g", artifactId = "a", version = "1")
     val artifact = param()
 
@@ -52,7 +52,7 @@ internal class MavenArtifactTest {
   }
 
   @Test
-  internal fun `create parameter from key`() {
+  fun `create parameter from key`() {
     val param = MavenArtifactParameter(gav = "g:a:1")
     val artifact = param()
 

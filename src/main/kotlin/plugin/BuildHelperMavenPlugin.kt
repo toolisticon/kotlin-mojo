@@ -8,7 +8,6 @@ import io.toolisticon.maven.mojo.MojoExecutorDsl
 import io.toolisticon.maven.mojo.MojoExecutorDsl.configuration
 import io.toolisticon.maven.mojo.MojoExecutorDsl.plugin
 import org.apache.maven.model.Plugin
-import org.apache.maven.model.Resource
 
 object BuildHelperMavenPlugin : PluginWrapper {
   override val plugin: Plugin = plugin(groupId = "org.codehaus.mojo", artifactId = "build-helper-maven-plugin", version = "3.3.0")

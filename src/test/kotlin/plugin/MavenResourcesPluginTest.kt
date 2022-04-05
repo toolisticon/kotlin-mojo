@@ -16,7 +16,7 @@ internal class MavenResourcesPluginTest {
   private lateinit var outputDir: File
 
   @Test
-  internal fun `create copy resources command`() {
+  fun `create copy resources command`() {
     val resource = CopyResource(directory = resourceDir)
 
     val cmd = CopyResourcesCommand(outputDirectory = outputDir, resources = listOf(resource))

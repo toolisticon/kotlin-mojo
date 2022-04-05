@@ -1,38 +1,14 @@
 package io.toolisticon.maven
 
 import io.toolisticon.maven.model.ArtifactId
-import io.toolisticon.maven.model.Configuration
-import io.toolisticon.maven.model.Goal
 import io.toolisticon.maven.model.GroupId
 import io.toolisticon.maven.mojo.MavenExt.hasRuntimeDependency
-import io.toolisticon.maven.mojo.MojoExecutorDsl.gavKey
 import mu.KLogger
 import org.apache.maven.execution.MavenSession
-import org.apache.maven.model.Plugin
 import org.apache.maven.plugin.BuildPluginManager
 import org.apache.maven.project.MavenProject
 import org.twdata.maven.mojoexecutor.MojoExecutor
 import kotlin.streams.asSequence
-
-/**
- * Command wrapping all required data to execute a 3rd party plugin using the [MojoExecutor]. The [MojoExecutor.ExecutionEnvironment]
- * is not included, this is part of the [MojoCommandExecutor].
- */
-interface MojoCommand {
-  companion object {
-    fun toString(command: MojoCommand) = with(command) {
-      "${this::class.simpleName}(" +
-        "plugin='${plugin.gavKey()}', " +
-        "goal='${goal}', " +
-        "configuration=${configuration.toString().replace("\n", "")}" +
-        ")"
-    }
-  }
-
-  val plugin: Plugin
-  val goal: Goal
-  val configuration: Configuration
-}
 
 /**
  * An executor able to execute [MojoCommand]s. Has to provide the [MojoExecutor.ExecutionEnvironment] to work.

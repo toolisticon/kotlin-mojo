@@ -1,6 +1,6 @@
 package io.toolisticon.maven.fn
 
-import io.toolisticon.maven.io.FileExt.subFolder
+import io.toolisticon.maven.fn.FileExt.createSubFolders
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -20,11 +20,12 @@ internal class CleanDirectoryTest {
   private lateinit var tmpDir: File
 
   @Test
-  internal fun `delete marker files and delete empty directories`() {
-    val remove = tmpDir.subFolder("a").subFolder("a1")
-    val keep = tmpDir.subFolder("b").subFolder("b1")
+  fun `delete marker files and delete empty directories`() {
+    val remove = tmpDir.createSubFolders("a", "a1")
+    val keep = tmpDir.createSubFolders("b", "b1")
 
     // create some files
+
     PrintWriter("${remove.path}/.gitkeep", Charsets.UTF_8).use { }
     PrintWriter("${keep.path}/.gitkeep", Charsets.UTF_8).use { }
     PrintWriter("${keep.path}/foo.txt", Charsets.UTF_8).use {

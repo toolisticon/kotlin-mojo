@@ -25,7 +25,7 @@ object MojoExecutorDsl {
     }
   }
 
-  internal fun receiverToArray(receiver: ElementListDsl.() -> Unit): Array<MojoExecutor.Element> {
+  fun receiverToArray(receiver: ElementListDsl.() -> Unit): Array<MojoExecutor.Element> {
     val dsl = ElementListDsl()
     receiver.invoke(dsl)
     return dsl.list.toTypedArray()

@@ -12,7 +12,7 @@ internal class MavenPredicatesTest {
   private val project = mock<MavenProject>()
 
   @Test
-  internal fun `has runtime dependency`() {
+  fun `has runtime dependency`() {
     val predicate = KotlinMojoHelper.Predicates.hasRuntimeDependency("foo", "bar")
 
     whenever(project.artifacts).thenReturn(setOf())

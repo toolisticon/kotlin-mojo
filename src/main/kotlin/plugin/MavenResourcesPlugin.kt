@@ -3,7 +3,7 @@ package io.toolisticon.maven.plugin
 import io.toolisticon.maven.KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID
 import io.toolisticon.maven.MojoCommand
 import io.toolisticon.maven.MojoCommand.Companion.toString
-import io.toolisticon.maven.io.FileExt.createIfNotExists
+import io.toolisticon.maven.fn.FileExt.createIfNotExists
 import io.toolisticon.maven.model.Configuration
 import io.toolisticon.maven.model.Goal
 import io.toolisticon.maven.mojo.MojoExecutorDsl
