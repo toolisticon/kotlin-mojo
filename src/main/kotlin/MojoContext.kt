@@ -1,7 +1,11 @@
 package io.toolisticon.maven
 
+import io.toolisticon.maven.model.ArtifactId
 import io.toolisticon.maven.model.Configuration
 import io.toolisticon.maven.model.Goal
+import io.toolisticon.maven.model.GroupId
+import io.toolisticon.maven.mojo.MavenExt.hasRuntimeDependency
+import io.toolisticon.maven.mojo.MojoExecutorDsl.gavKey
 import mu.KLogger
 import org.apache.maven.execution.MavenSession
 import org.apache.maven.model.Plugin
@@ -15,9 +19,19 @@ import kotlin.streams.asSequence
  * is not included, this is part of the [MojoCommandExecutor].
  */
 interface MojoCommand {
+  companion object {
+    fun toString(command: MojoCommand) = with(command) {
+      "${this::class.simpleName}(" +
+        "plugin='${plugin.gavKey()}', " +
+        "goal='${goal}', " +
+        "configuration=${configuration.toString().replace("\n", "")}" +
+        ")"
+    }
+  }
+
   val plugin: Plugin
   val goal: Goal
-  fun configuration(): Configuration
+  val configuration: Configuration
 }
 
 /**
@@ -47,7 +61,7 @@ class MojoContext(
   }
 
   override fun execute(command: MojoCommand): Unit = with(command) {
-    MojoExecutor.executeMojo(plugin, goal, configuration(), executionEnvironment)
+    MojoExecutor.executeMojo(plugin, goal, configuration, executionEnvironment)
   }
 
   val classpathElements: Set<String> by lazy {
@@ -56,6 +70,8 @@ class MojoContext(
       ?.sortedBy { it.substringAfterLast("/") }?.toSet()
       ?: emptySet()
   }
+
+  fun hasRuntimeDependency(groupId: GroupId, artifactId: ArtifactId) = mavenProject?.hasRuntimeDependency(groupId, artifactId) ?: false
 
   override fun toString(): String {
     val projectName = mavenProject?.let { "${it.groupId}.${it.artifacts}" } ?: "N/A"

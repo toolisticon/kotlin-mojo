@@ -1,58 +1,68 @@
-package io.toolisticon.maven.command
+package io.toolisticon.maven.plugin
 
 import io.toolisticon.maven.KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID
 import io.toolisticon.maven.MojoCommand
+import io.toolisticon.maven.MojoCommand.Companion.toString
 import io.toolisticon.maven.io.FileExt.createIfNotExists
 import io.toolisticon.maven.model.Configuration
 import io.toolisticon.maven.model.Goal
 import io.toolisticon.maven.model.MavenArtifactParameter
+import io.toolisticon.maven.mojo.MojoExecutorDsl
 import io.toolisticon.maven.mojo.MojoExecutorDsl.configuration
-import io.toolisticon.maven.mojo.MojoExecutorDsl.goal
 import io.toolisticon.maven.mojo.MojoExecutorDsl.plugin
 import org.apache.maven.model.Plugin
 import java.io.File
 
-data class UnpackDependenciesCommand(
-  val outputDirectory: File,
-  val artifactItems: Set<ArtifactItem>,
-  val excludes: String? = null
-) : MojoCommand {
-  companion object {
-    val PLUGIN = plugin(MAVEN_PLUGINS_GROUP_ID, "maven-dependency-plugin", "3.3.0")
-    val GOAL: Goal = goal("unpack")
-  }
+object MavenDependencyPlugin : PluginWrapper {
 
-  override fun configuration(): Configuration = configuration {
-    element("outputDirectory", outputDirectory.createIfNotExists())
-    element("artifactItems") {
-      artifactItems.forEach {
-        element("artifactItem") {
-          element("groupId", it.groupId)
-          element("artifactId", it.artifactId)
-          element("version", it.version)
-          element("overWrite", it.overwrite)
-        }
+  override val plugin: Plugin = plugin(MAVEN_PLUGINS_GROUP_ID, "maven-dependency-plugin", "3.3.0")
+
+  /**
+   * Wraps required parameters to execute [maven-dependency-plugin/unpack](https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html).
+   */
+  data class UnpackDependenciesCommand(
+    val outputDirectory: File,
+    val artifactItems: Set<ArtifactItem>,
+    val excludes: String? = null
+  ) : MojoCommand {
+    companion object {
+      val GOAL: Goal = MojoExecutorDsl.goal("unpack")
+
+      fun MavenArtifactParameter.toArtifactItem() = this().let {
+        ArtifactItem(groupId = it.groupId, artifactId = it.artifactId, version = it.version)
       }
     }
-    if (excludes != null) {
-      element("excludes", excludes)
+
+    override val configuration: Configuration = configuration {
+      element("outputDirectory", outputDirectory.createIfNotExists())
+      element("artifactItems") {
+        artifactItems.forEach {
+          element("artifactItem") {
+            element("groupId", it.groupId)
+            element("artifactId", it.artifactId)
+            element("version", it.version)
+            element("overWrite", it.overwrite)
+          }
+        }
+      }
+
+      if (excludes != null) {
+        element("excludes", excludes)
+      }
     }
+
+    override val goal: Goal = GOAL
+    override val plugin: Plugin = MavenDependencyPlugin.plugin
+    override fun toString() = toString(this)
+
+    data class ArtifactItem(
+      val groupId: String,
+      val artifactId: String,
+      val version: String,
+      val overwrite: Boolean = false
+    )
   }
 
-  override val goal: Goal = "unpack"
-  override val plugin: Plugin = PLUGIN
-
-  data class ArtifactItem(
-    val groupId: String,
-    val artifactId: String,
-    val version: String,
-    val overwrite: Boolean = false
-  )
-}
-
-fun MavenArtifactParameter.toArtifactItem() = this().let {
-  UnpackDependenciesCommand.ArtifactItem(groupId = it.groupId, artifactId = it.artifactId, version = it.version)
-}
 
 //
 //  private lateinit var _outputDirectory: File
@@ -93,3 +103,5 @@ fun MavenArtifactParameter.toArtifactItem() = this().let {
 //    element("excludes", "META-INF/**")
 //  )
 //
+
+}

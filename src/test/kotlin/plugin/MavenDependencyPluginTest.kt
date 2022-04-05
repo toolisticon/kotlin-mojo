@@ -1,12 +1,14 @@
-package io.toolisticon.maven.command
+package io.toolisticon.maven.plugin
 
 import io.toolisticon.maven.model.MavenArtifactParameter
-import org.assertj.core.api.Assertions
+import io.toolisticon.maven.plugin.MavenDependencyPlugin.UnpackDependenciesCommand.Companion.toArtifactItem
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
 
-internal class UnpackDependenciesCommandTest {
+
+internal class MavenDependencyPluginTest {
 
   @TempDir
   private lateinit var output: File
@@ -16,13 +18,13 @@ internal class UnpackDependenciesCommandTest {
     val parameter = MavenArtifactParameter(gav = "io.hello:world:1.0")
     val parameters = setOf(parameter)
 
-    val cmd = UnpackDependenciesCommand(
+    val cmd = MavenDependencyPlugin.UnpackDependenciesCommand(
       outputDirectory = output,
       artifactItems = parameters.map { it.toArtifactItem() }.toSet(),
       excludes = "META-INF/**"
     )
 
-    Assertions.assertThat(cmd.configuration().toString()).isEqualTo(
+    assertThat(cmd.configuration.toString()).isEqualTo(
       """
       <?xml version="1.0" encoding="UTF-8"?>
       <configuration>
@@ -40,4 +42,5 @@ internal class UnpackDependenciesCommandTest {
     """.trimIndent()
     )
   }
+
 }
