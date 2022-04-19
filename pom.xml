@@ -12,7 +12,7 @@
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <kotlin.version>1.6.20</kotlin.version>
+    <kotlin.version>1.6.21</kotlin.version>
     <java.version>11</java.version>
     <kotlin-logging.version>2.1.21</kotlin-logging.version>
 
