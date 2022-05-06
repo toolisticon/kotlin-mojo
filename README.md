@@ -1,5 +1,7 @@
 # kotlin-mojo-helper
 
+[![incubating](https://img.shields.io/badge/lifecycle-INCUBATING-orange.svg)](https://github.com/holisticon#incubating)
+
 A library that makes writing powerful maven plugins even easier by providing kotlin extensions and convenience functions for common use cases.
 
 [![Build Status](https://github.com/toolisticon/kotlin-mojo-helper/workflows/Development%20branches/badge.svg)](https://github.com/toolisticon/kotlin-mojo-helper/actions)
