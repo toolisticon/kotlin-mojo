@@ -4,19 +4,22 @@
 
   <groupId>io.toolisticon.maven</groupId>
   <artifactId>kotlin-mojo-helper</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 
   <name>${project.artifactId}</name>
   <description>Helper for writing maven command mojos with kotlin</description>
   <url>https://github.com/toolisticon/kotlin-mojo-helper/</url>
 
   <properties>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <kotlin.version>1.6.20</kotlin.version>
+    <project.encoding>UTF-8</project.encoding>
+    <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+
+    <kotlin.version>1.6.21</kotlin.version>
     <java.version>11</java.version>
     <kotlin-logging.version>2.1.21</kotlin-logging.version>
 
-    <maven.version>3.8.4</maven.version>
+    <maven.version>3.8.5</maven.version>
 
     <!-- MAVEN -->
     <maven-plugin-api.version>${maven.version}</maven-plugin-api.version>
@@ -24,7 +27,7 @@
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
     <!-- PLUGIN -->
-    <maven-dokka-plugin.version>1.6.10</maven-dokka-plugin.version>
+    <maven-dokka-plugin.version>1.6.20</maven-dokka-plugin.version>
 
     <!-- TEST -->
     <junit5.version>5.8.2</junit5.version>

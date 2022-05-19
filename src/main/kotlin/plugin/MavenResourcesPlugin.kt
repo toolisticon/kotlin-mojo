@@ -1,17 +1,17 @@
 package io.toolisticon.maven.plugin
 
+import io.toolisticon.maven.AbstractMojoCommand
 import io.toolisticon.maven.KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID
-import io.toolisticon.maven.MojoCommand
-import io.toolisticon.maven.MojoCommand.Companion.toString
 import io.toolisticon.maven.fn.FileExt.createIfNotExists
 import io.toolisticon.maven.model.Configuration
-import io.toolisticon.maven.model.Goal
-import io.toolisticon.maven.mojo.MojoExecutorDsl
 import io.toolisticon.maven.mojo.MojoExecutorDsl.configuration
 import io.toolisticon.maven.mojo.MojoExecutorDsl.plugin
 import org.apache.maven.model.Plugin
 import java.io.File
 
+/**
+ * MojoExecutor access to goals of [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/).
+ */
 object MavenResourcesPlugin : PluginWrapper {
   override val plugin: Plugin = plugin(
     MAVEN_PLUGINS_GROUP_ID,
@@ -25,7 +25,7 @@ object MavenResourcesPlugin : PluginWrapper {
   data class CopyResourcesCommand(
     val outputDirectory: File,
     val resources: List<CopyResource>
-  ) : MojoCommand {
+  ) : AbstractMojoCommand(goal = GOAL, plugin = MavenResourcesPlugin.plugin) {
     companion object {
       const val GOAL = "copy-resources"
     }
@@ -45,10 +45,6 @@ object MavenResourcesPlugin : PluginWrapper {
         }
       }
     }
-
-    override val plugin: Plugin = MavenResourcesPlugin.plugin
-    override val goal: Goal = MojoExecutorDsl.goal(GOAL)
-    override fun toString() = toString(this)
 
     data class CopyResource(
       val directory: File,
