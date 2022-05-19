@@ -57,3 +57,7 @@ interface MojoCommand {
    */
   val configuration: Configuration
 }
+
+abstract class AbstractMojoCommand(override val plugin: Plugin, override val goal: Goal) : MojoCommand {
+  override fun toString(): String = MojoCommand.toString(this)
+}

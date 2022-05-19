@@ -1,5 +1,6 @@
 package io.toolisticon.maven.plugin
 
+import io.toolisticon.maven.AbstractMojoCommand
 import io.toolisticon.maven.KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID
 import io.toolisticon.maven.MojoCommand
 import io.toolisticon.maven.MojoCommand.Companion.toString
@@ -23,8 +24,9 @@ object MavenDependencyPlugin : PluginWrapper {
   data class UnpackDependenciesCommand(
     val outputDirectory: File,
     val artifactItems: Set<ArtifactItem>,
-    val excludes: String? = null
-  ) : MojoCommand {
+    val excludes: String? = null,
+    val includes: String? = null
+  ) : AbstractMojoCommand(goal = GOAL, plugin = plugin) {
     companion object {
       val GOAL: Goal = MojoExecutorDsl.goal("unpack")
 
@@ -49,11 +51,10 @@ object MavenDependencyPlugin : PluginWrapper {
       if (excludes != null) {
         element("excludes", excludes)
       }
+      if (includes != null) {
+        element("includes", includes)
+      }
     }
-
-    override val goal: Goal = GOAL
-    override val plugin: Plugin = MavenDependencyPlugin.plugin
-    override fun toString() = toString(this)
 
     data class ArtifactItem(
       val groupId: String,

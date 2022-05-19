@@ -13,5 +13,3 @@ data class ResourceData(
   val directory: File,
   val targetPath: String? = null
 )
-
-
