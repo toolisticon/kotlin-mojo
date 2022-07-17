@@ -4,7 +4,7 @@
 
   <groupId>io.toolisticon.maven</groupId>
   <artifactId>kotlin-mojo-helper</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.1.0</version>
 
   <name>${project.artifactId}</name>
   <description>Helper for writing maven command mojos with kotlin</description>
