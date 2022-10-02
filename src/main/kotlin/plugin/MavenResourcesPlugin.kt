@@ -1,12 +1,10 @@
 package io.toolisticon.maven.plugin
 
 import io.toolisticon.maven.AbstractMojoCommand
-import io.toolisticon.maven.KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID
 import io.toolisticon.maven.fn.FileExt.createIfNotExists
 import io.toolisticon.maven.model.Configuration
 import io.toolisticon.maven.mojo.MojoExecutorDsl.configuration
 import io.toolisticon.maven.mojo.MojoExecutorDsl.plugin
-import io.toolisticon.maven.plugin.MavenResourcesPlugin.plugin
 import org.apache.maven.model.Plugin
 import java.io.File
 
@@ -14,7 +12,7 @@ import java.io.File
  * MojoExecutor access to goals of [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/).
  */
 object MavenResourcesPlugin : PluginWrapper {
-  override val plugin: Plugin = plugin(artifactId =  "maven-resources-plugin")
+  override val plugin: Plugin = plugin(artifactId = "maven-resources-plugin")
 
   /**
    * Wraps required parameters to execute [maven-resources-plugin/copy-resources](https://maven.apache.org/plugins/maven-resources-plugin/copy-resources-mojo.html).
