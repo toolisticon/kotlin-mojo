@@ -4,6 +4,7 @@ package io.toolisticon.maven
 
 import io.toolisticon.maven.logging.Slf4jMavenLogger
 import io.toolisticon.maven.model.ArtifactId
+import io.toolisticon.maven.model.ArtifactVersion
 import io.toolisticon.maven.model.GroupId
 import io.toolisticon.maven.model.VersionlessKey
 import io.toolisticon.maven.mojo.ProjectContainsRuntimeDependencyPredicate
@@ -13,6 +14,7 @@ import org.apache.maven.artifact.ArtifactUtils
 import org.apache.maven.plugin.Mojo
 import org.apache.maven.plugin.logging.Log
 import org.apache.maven.plugin.logging.SystemStreamLog
+import java.util.*
 
 /**
  * Root class providing simplified access to most common use cases.
@@ -55,4 +57,12 @@ object KotlinMojoHelper {
 
   }
 
+  internal fun ArtifactId.versionFromProperties(): ArtifactVersion = mavenProperties.getProperty("plugin-wrapper.${this}.version")
+
+  internal val mavenProperties: Properties by lazy {
+    val properties = Properties()
+    KotlinMojoHelper::class.java.getResourceAsStream("/maven.properties")?.also { properties.load(it) }
+
+    properties
+  }
 }

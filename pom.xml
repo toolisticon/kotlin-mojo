@@ -13,7 +13,7 @@
   <properties>
     <kotlin.version>1.7.20</kotlin.version>
     <java.version>11</java.version>
-    <kotlin-logging.version>2.1.23</kotlin-logging.version>
+    <kotlin-logging.version>3.0.0</kotlin-logging.version>
 
     <maven.version>3.8.6</maven.version>
 
@@ -23,16 +23,22 @@
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
     <!-- TEST -->
-    <junit5.version>5.8.2</junit5.version>
+    <junit5.version>5.9.1</junit5.version>
     <mockito.version>4.0.0</mockito.version>
-    <assertj.version>3.22.0</assertj.version>
-    <slf4j.version>1.7.36</slf4j.version>
+    <assertj.version>3.23.1</assertj.version>
+    <slf4j.version>2.0.3</slf4j.version>
 
     <!-- MAVEN PROJECT -->
     <project.encoding>UTF-8</project.encoding>
     <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+    <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
     <maven-plugin-dokka.version>1.7.0</maven-plugin-dokka.version>
+
+    <!-- used for command execution via mojo-executor -->
+    <plugin-wrapper.maven-resources-plugin.version>3.3.0</plugin-wrapper.maven-resources-plugin.version>
+    <plugin-wrapper.maven-dependency-plugin.version>3.3.0</plugin-wrapper.maven-dependency-plugin.version>
+    <plugin-wrapper.build-helper-maven-plugin.version>3.3.0</plugin-wrapper.build-helper-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -141,6 +147,29 @@
       <artifactId>itf-assertj</artifactId>
       <version>0.11.0</version>
       <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <version>${plugin-wrapper.maven-resources-plugin.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>${plugin-wrapper.maven-dependency-plugin.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>build-helper-maven-plugin</artifactId>
+      <version>${plugin-wrapper.build-helper-maven-plugin.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
     </dependency>
   </dependencies>
 
@@ -421,6 +450,8 @@
           </executions>
         </plugin>
 
+
+
         <!-- Source from Kotlin -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -569,6 +600,8 @@
             </execution>
           </executions>
         </plugin>
+
+
       </plugins>
     </pluginManagement>
 
@@ -601,6 +634,22 @@
               <goal>install</goal>
               <goal>resources-its</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>properties-maven-plugin</artifactId>
+        <version>${properties-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>write-project-properties</goal>
+            </goals>
+            <configuration>
+              <outputFile>${project.build.outputDirectory}/maven.properties</outputFile>
+            </configuration>
           </execution>
         </executions>
       </plugin>

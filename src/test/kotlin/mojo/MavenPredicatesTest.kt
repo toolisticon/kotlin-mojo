@@ -1,7 +1,7 @@
 package io.toolisticon.maven.mojo
 
 import io.toolisticon.maven.KotlinMojoHelper
-import io.toolisticon.maven.KotlinMojoTestHelper.ArtifactFake
+import io.toolisticon.maven.KotlinMojoTestFixtures.ArtifactFake
 import org.apache.maven.project.MavenProject
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

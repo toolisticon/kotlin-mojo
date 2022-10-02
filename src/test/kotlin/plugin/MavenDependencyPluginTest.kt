@@ -1,6 +1,7 @@
 package io.toolisticon.maven.plugin
 
 import io.toolisticon.maven.model.MavenArtifactParameter
+import io.toolisticon.maven.mojo.MojoExecutorDsl.gavKey
 import io.toolisticon.maven.plugin.MavenDependencyPlugin.UnpackDependenciesCommand.Companion.toArtifactItem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -12,6 +13,12 @@ internal class MavenDependencyPluginTest {
 
   @TempDir
   private lateinit var output: File
+
+
+  @Test
+  fun `has correct gav`() {
+    assertThat(MavenDependencyPlugin.plugin.gavKey()).isEqualTo("org.apache.maven.plugins:maven-dependency-plugin:3.3.0")
+  }
 
   @Test
   fun `create command`() {

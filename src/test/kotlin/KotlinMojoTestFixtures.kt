@@ -8,7 +8,7 @@ import org.apache.maven.artifact.Artifact
 import org.apache.maven.artifact.DefaultArtifact
 import org.apache.maven.artifact.handler.DefaultArtifactHandler
 
-object KotlinMojoTestHelper {
+object KotlinMojoTestFixtures {
 
   class ArtifactFake(
     groupId: GroupId,

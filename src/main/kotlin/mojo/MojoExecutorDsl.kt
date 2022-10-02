@@ -1,5 +1,7 @@
 package io.toolisticon.maven.mojo
 
+import io.toolisticon.maven.KotlinMojoHelper
+import io.toolisticon.maven.KotlinMojoHelper.versionFromProperties
 import io.toolisticon.maven.model.*
 import org.apache.maven.artifact.ArtifactUtils
 import org.apache.maven.model.Plugin
@@ -10,7 +12,9 @@ object MojoExecutorDsl {
 
   fun Plugin.gavKey(): GavKey = ArtifactUtils.key(groupId, artifactId, version)
   fun goal(goal: Goal): Goal = MojoExecutor.goal(goal)
-  fun plugin(groupId: GroupId, artifactId: ArtifactId, version: ArtifactVersion) = MojoExecutor.plugin(groupId, artifactId, version)
+
+  fun plugin(groupId: GroupId = KotlinMojoHelper.MAVEN_PLUGINS_GROUP_ID, artifactId: ArtifactId, version: ArtifactVersion = artifactId.versionFromProperties()): Plugin =
+    MojoExecutor.plugin(groupId, artifactId, version)
 
   fun configuration(receiver: ElementListDsl.() -> Unit): Configuration = MojoExecutor.configuration(*receiverToArray(receiver))
 

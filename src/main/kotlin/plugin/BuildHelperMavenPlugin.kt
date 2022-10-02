@@ -9,7 +9,7 @@ import org.apache.maven.model.Plugin
 import java.io.File
 
 object BuildHelperMavenPlugin : PluginWrapper {
-  override val plugin: Plugin = plugin(groupId = "org.codehaus.mojo", artifactId = "build-helper-maven-plugin", version = "3.3.0")
+  override val plugin: Plugin = plugin(groupId = "org.codehaus.mojo", artifactId = "build-helper-maven-plugin")
 
   /**
    * Wraps parameters for [build-helper-maven-plugin/add-resource](https://www.mojohaus.org/build-helper-maven-plugin/add-resource-mojo.html).

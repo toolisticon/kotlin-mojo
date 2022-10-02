@@ -1,5 +1,6 @@
 package io.toolisticon.maven.plugin
 
+import io.toolisticon.maven.mojo.MojoExecutorDsl.gavKey
 import io.toolisticon.maven.plugin.BuildHelperMavenPlugin.AddResourceDirectoryCommand
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -10,6 +11,11 @@ internal class BuildHelperMavenPluginTest {
 
   @TempDir
   private lateinit var tmpFile: File
+
+  @Test
+   fun `has correct gav`() {
+    assertThat(BuildHelperMavenPlugin.plugin.gavKey()).isEqualTo("org.codehaus.mojo:build-helper-maven-plugin:3.3.0")
+  }
 
   @Test
   fun `create command`() {

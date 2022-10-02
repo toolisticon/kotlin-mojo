@@ -16,7 +16,7 @@ import java.io.File
 
 object MavenDependencyPlugin : PluginWrapper {
 
-  override val plugin: Plugin = plugin(MAVEN_PLUGINS_GROUP_ID, "maven-dependency-plugin", "3.3.0")
+  override val plugin: Plugin = plugin(artifactId = "maven-dependency-plugin")
 
   /**
    * Wraps required parameters to execute [maven-dependency-plugin/unpack](https://maven.apache.org/plugins/maven-dependency-plugin/unpack-mojo.html).

@@ -21,5 +21,8 @@ In your maven command project (maven packaging `maven-command`) include this lib
 </dependency>
 ```
 
-The current latest version published on maven cenral can be found via the `maven central` badge above.
+The current latest version published on maven central can be found via the `maven central` badge above.
 
+## Build
+
+Run `mvn package` before editing in IDE, so the required maven.properties file is generated.
