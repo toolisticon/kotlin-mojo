@@ -13,7 +13,7 @@
   <properties>
     <kotlin.version>1.7.20</kotlin.version>
     <java.version>11</java.version>
-    <kotlin-logging.version>3.0.0</kotlin-logging.version>
+    <kotlin-logging.version>3.0.2</kotlin-logging.version>
 
     <maven.version>3.8.6</maven.version>
 
@@ -33,7 +33,7 @@
     <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
     <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
-    <maven-plugin-dokka.version>1.7.0</maven-plugin-dokka.version>
+    <maven-plugin-dokka.version>1.7.20</maven-plugin-dokka.version>
 
     <!-- used for command execution via mojo-executor -->
     <plugin-wrapper.maven-resources-plugin.version>3.3.0</plugin-wrapper.maven-resources-plugin.version>
