@@ -14,7 +14,7 @@ internal class BuildHelperMavenPluginTest {
 
   @Test
    fun `has correct gav`() {
-    assertThat(BuildHelperMavenPlugin.plugin.gavKey()).isEqualTo("org.codehaus.mojo:build-helper-maven-plugin:3.3.0")
+    assertThat(BuildHelperMavenPlugin.plugin.gavKey()).isEqualTo("org.codehaus.mojo:build-helper-maven-plugin:3.4.0")
   }
 
   @Test

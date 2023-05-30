@@ -11,34 +11,34 @@
   <url>https://github.com/toolisticon/kotlin-mojo-helper/</url>
 
   <properties>
-    <kotlin.version>1.7.20</kotlin.version>
+    <kotlin.version>1.8.21</kotlin.version>
     <java.version>11</java.version>
-    <kotlin-logging.version>3.0.4</kotlin-logging.version>
+    <kotlin-logging.version>3.0.5</kotlin-logging.version>
 
-    <maven.version>3.8.6</maven.version>
+    <maven.version>3.9.2</maven.version>
 
     <!-- MAVEN -->
     <maven-plugin-api.version>${maven.version}</maven-plugin-api.version>
-    <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
+    <maven-plugin-annotations.version>3.9.0</maven-plugin-annotations.version>
     <mojo-executor.version>2.4.0</mojo-executor.version>
 
     <!-- TEST -->
     <junit5.version>5.9.1</junit5.version>
-    <mockito.version>4.0.0</mockito.version>
-    <assertj.version>3.23.1</assertj.version>
-    <slf4j.version>2.0.3</slf4j.version>
+    <mockito.version>4.1.0</mockito.version>
+    <assertj.version>3.24.2</assertj.version>
+    <slf4j.version>2.0.7</slf4j.version>
 
     <!-- MAVEN PROJECT -->
     <project.encoding>UTF-8</project.encoding>
     <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
     <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
     <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
-    <maven-plugin-dokka.version>1.7.20</maven-plugin-dokka.version>
+    <maven-plugin-dokka.version>1.8.10</maven-plugin-dokka.version>
 
     <!-- used for command execution via mojo-executor -->
-    <plugin-wrapper.maven-resources-plugin.version>3.3.0</plugin-wrapper.maven-resources-plugin.version>
-    <plugin-wrapper.maven-dependency-plugin.version>3.3.0</plugin-wrapper.maven-dependency-plugin.version>
-    <plugin-wrapper.build-helper-maven-plugin.version>3.3.0</plugin-wrapper.build-helper-maven-plugin.version>
+    <plugin-wrapper.maven-resources-plugin.version>3.3.1</plugin-wrapper.maven-resources-plugin.version>
+    <plugin-wrapper.maven-dependency-plugin.version>3.6.0</plugin-wrapper.maven-dependency-plugin.version>
+    <plugin-wrapper.build-helper-maven-plugin.version>3.4.0</plugin-wrapper.build-helper-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -139,13 +139,13 @@
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-jupiter-extension</artifactId>
-      <version>0.11.0</version>
+      <version>0.12.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.soebes.itf.jupiter.extension</groupId>
       <artifactId>itf-assertj</artifactId>
-      <version>0.11.0</version>
+      <version>0.12.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -190,14 +190,14 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.0</version>
         </plugin>
 
         <!-- Coverage metering -->
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.7</version>
+          <version>0.8.10</version>
           <executions>
             <execution>
               <id>pre-unit-test</id>
@@ -248,7 +248,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>3.11.0</version>
           <configuration>
             <encoding>UTF-8</encoding>
             <release>${java.version}</release>
@@ -344,7 +344,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.1</version>
           <configuration>
             <encoding>UTF-8</encoding>
           </configuration>
@@ -353,7 +353,7 @@
         <!-- Unit Tests -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.1.0</version>
           <configuration>
             <useSystemClassLoader>false</useSystemClassLoader>
             <shutdown>kill</shutdown>
@@ -372,7 +372,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>3.1.0</version>
           <executions>
             <execution>
               <goals>
@@ -399,7 +399,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.10.0</version>
+          <version>2.15.0</version>
           <configuration>
             <generateBackupPoms>false</generateBackupPoms>
           </configuration>
@@ -436,7 +436,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>3.5.0</version>
           <executions>
             <execution>
               <id>attach-javadocs</id>
@@ -454,7 +454,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
           <executions>
             <execution>
               <id>add-kotlin-source</id>
@@ -475,7 +475,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.0</version>
           <executions>
             <execution>
               <id>attach-sources</id>
@@ -495,7 +495,7 @@
         <plugin>
           <groupId>com.amashchenko.maven.plugin</groupId>
           <artifactId>gitflow-maven-plugin</artifactId>
-          <version>1.18.0</version>
+          <version>1.19.0</version>
           <configuration>
             <gitFlowConfig>
               <productionBranch>master</productionBranch>
@@ -517,7 +517,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.1.0</version>
           <configuration>
             <gpgArguments>
               <arg>--batch</arg>
@@ -541,7 +541,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>3.1.1</version>
           <configuration>
             <skip>true</skip>
           </configuration>
@@ -551,7 +551,7 @@
         <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.12</version>
+          <version>1.6.13</version>
           <configuration>
             <autoReleaseAfterClose>true</autoReleaseAfterClose>
             <serverId>ossrh</serverId>
@@ -571,14 +571,14 @@
         <!-- Install -->
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>3.1.1</version>
         </plugin>
 
         <!-- Enforce -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.3.0</version>
           <executions>
             <execution>
               <id>enforce-maven</id>
@@ -623,7 +623,7 @@
       <plugin>
         <groupId>com.soebes.itf.jupiter.extension</groupId>
         <artifactId>itf-maven-plugin</artifactId>
-        <version>0.11.0</version>
+        <version>0.12.0</version>
         <executions>
           <execution>
             <id>installing</id>

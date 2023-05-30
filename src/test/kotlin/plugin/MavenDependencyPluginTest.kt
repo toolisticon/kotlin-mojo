@@ -17,7 +17,7 @@ internal class MavenDependencyPluginTest {
 
   @Test
   fun `has correct gav`() {
-    assertThat(MavenDependencyPlugin.plugin.gavKey()).isEqualTo("org.apache.maven.plugins:maven-dependency-plugin:3.3.0")
+    assertThat(MavenDependencyPlugin.plugin.gavKey()).isEqualTo("org.apache.maven.plugins:maven-dependency-plugin:3.6.0")
   }
 
   @Test
