@@ -23,6 +23,7 @@ import java.util.*
  * Root class providing simplified access to most common use cases.
  */
 object KotlinMojoHelper {
+  const val BUILD_PROPERTIES = "kotlin-mojo-helper-maven.properties"
   const val MAVEN_PLUGINS_GROUP_ID: GroupId = "org.apache.maven.plugins"
 
   /**
@@ -64,7 +65,7 @@ object KotlinMojoHelper {
 
   internal val mavenProperties: Properties by lazy {
     val properties = Properties()
-    KotlinMojoHelper::class.java.getResourceAsStream("/maven.properties")?.also { properties.load(it) }
+    KotlinMojoHelper::class.java.getResourceAsStream("/$BUILD_PROPERTIES")?.also { properties.load(it) }
 
     properties
   }

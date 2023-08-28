@@ -4,9 +4,9 @@
 
 A library that makes writing powerful maven plugins even easier by providing kotlin extensions and convenience functions for common use cases.
 
-[![Build Status](https://github.com/toolisticon/kotlin-mojo-helper/workflows/Development%20branches/badge.svg)](https://github.com/toolisticon/kotlin-mojo-helper/actions)
+[![Build Status](https://github.com/toolisticon/kotlin-mojo/workflows/Development%20branches/badge.svg)](https://github.com/toolisticon/kotlin-mojo/actions)
 [![sponsored](https://img.shields.io/badge/sponsoredBy-Holisticon-RED.svg)](https://holisticon.de/)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven/kotlin-mojo-helper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven/kotlin-mojo-helper)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven/kotlin-mojo/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.toolisticon.maven/kotlin-mojo-helper)
 
 
 ## How to use
