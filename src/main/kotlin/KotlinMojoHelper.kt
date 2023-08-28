@@ -14,6 +14,9 @@ import org.apache.maven.artifact.ArtifactUtils
 import org.apache.maven.plugin.Mojo
 import org.apache.maven.plugin.logging.Log
 import org.apache.maven.plugin.logging.SystemStreamLog
+import org.apache.maven.shared.model.fileset.FileSet
+import org.apache.maven.shared.model.fileset.util.FileSetManager
+import java.io.File
 import java.util.*
 
 /**
@@ -64,5 +67,26 @@ object KotlinMojoHelper {
     KotlinMojoHelper::class.java.getResourceAsStream("/maven.properties")?.also { properties.load(it) }
 
     properties
+  }
+
+  fun findIncludedFiles(directory: File, includes: Array<String> = arrayOf("**/*"), excludes: Array<String> = emptyArray()): List<String> = findIncludedFiles(
+    absPath = directory.absolutePath, includes = includes, excludes = excludes
+  )
+
+  fun findIncludedFiles(absPath: String, includes: Array<String> = arrayOf("**/*"), excludes: Array<String> = emptyArray()): List<String> {
+    val fileSetManager = FileSetManager()
+    val fs = FileSet().apply {
+      directory = absPath
+      isFollowSymlinks = false
+    }
+
+    for (include in includes) {
+      fs.addInclude(include)
+    }
+    for (exclude in excludes) {
+      fs.addExclude(exclude)
+    }
+    return fileSetManager.getIncludedFiles(fs)
+      .filterNotNull()
   }
 }
